@@ -11,6 +11,8 @@ enum StatusQuiz {
 }
 
 class ControladorQuiz {
+  int acertos = 0;
+  int erros = 0;
   // repositório responsável por fornecer as questões
   final repositorio = RepositorioQuestoes();
   // indica qual o texto da alternativa selecionada
@@ -49,6 +51,11 @@ class ControladorQuiz {
     //o usuário clicou em responder
     if (_status == StatusQuiz.RESPONDER) {
       _respondeu = true;
+      if (acertouResposta) {
+        setAcertos();
+      } else {
+        setErros();
+      }
       //verifica se terminou
       if (_indiceQuestaoAtual == quantidadeTotalQuestoes - 1) {
         _status = StatusQuiz.FINALIZAR;
@@ -67,5 +74,24 @@ class ControladorQuiz {
     } else if (_status == StatusQuiz.FINALIZAR) {
       _status = StatusQuiz.RESULTADOS;
     }
+  }
+
+  void setAcertos() {
+    acertos += 1;
+    print("ACERTOU!");
+  }
+
+  void setErros() {
+    erros += 1;
+    print("ERROU!");
+  }
+
+  void reiniciarJogo() {
+    print("reiniciar");
+    acertos = 0;
+    erros = 0;
+    _status = StatusQuiz.AGUARDAR;
+    _respondeu = false;
+    _indiceQuestaoAtual = 0;
   }
 }

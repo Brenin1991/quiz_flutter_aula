@@ -36,7 +36,23 @@ class _HomePageState extends State<HomePage> {
       body: controladorQuiz.verResultados
           ? Container(
               child: Center(
-                child: Text("Resultados"),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text("Resultado"),
+                    Text(
+                        ": ACERTOS: ${controladorQuiz.acertos} ERROS: ${controladorQuiz.erros}"),
+                    ElevatedButton(
+                      child: Text('Jogar Novamente'),
+                      onPressed: () {
+                        setState(() {
+                          controladorQuiz.reiniciarJogo();
+                          controladorQuiz.acao();
+                        });
+                      },
+                    )
+                  ],
+                ),
               ),
             )
           : Container(

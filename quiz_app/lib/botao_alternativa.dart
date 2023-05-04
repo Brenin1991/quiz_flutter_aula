@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'controlador_quiz.dart';
 
 class BotaoAlternativa extends StatelessWidget {
   final String alternativa;
@@ -18,6 +19,8 @@ class BotaoAlternativa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    ControladorQuiz controladorQuiz = ControladorQuiz();
+
     return Column(
       children: [
         SizedBox(
