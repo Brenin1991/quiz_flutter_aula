@@ -32,39 +32,77 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Quiz App"),
+        backgroundColor: Color.fromARGB(255, 1, 26, 138),
       ),
       body: controladorQuiz.verResultados
           ? Container(
+              decoration:
+                  new BoxDecoration(color: Color.fromARGB(255, 1, 26, 138)),
               child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text("Resultado"),
-                    Text(
-                        ": ACERTOS: ${controladorQuiz.acertos} ERROS: ${controladorQuiz.erros}"),
-                    ElevatedButton(
-                      child: Text('Jogar Novamente'),
-                      onPressed: () {
-                        setState(() {
-                          controladorQuiz.reiniciarJogo();
-                          controladorQuiz.acao();
-                        });
-                      },
-                    )
-                  ],
+                child: Container(
+                  margin: EdgeInsets.all(24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                          style: TextStyle(
+                              fontSize: 25,
+                              color: Color.fromARGB(255, 255, 217, 0)),
+                          "Resultado"),
+                      Text(
+                          style: TextStyle(
+                              fontSize: 20,
+                              color: Color.fromARGB(255, 241, 241, 241)),
+                          "ACERTOS: ${controladorQuiz.acertos} ERROS: ${controladorQuiz.erros}"),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromARGB(255, 35, 150, 0),
+                          foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(50),
+                            side: BorderSide(
+                              color: Colors.amber,
+                              width: 3.0,
+                            ),
+                          ),
+                        ),
+                        child: Text('Jogar Novamente'),
+                        onPressed: () {
+                          setState(() {
+                            controladorQuiz.reiniciarJogo();
+                            controladorQuiz.acao();
+                          });
+                        },
+                      )
+                    ],
+                  ),
                 ),
               ),
             )
           : Container(
+              decoration:
+                  new BoxDecoration(color: Color.fromARGB(255, 1, 26, 138)),
               padding: EdgeInsets.all(50),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                        "Questão ${controladorQuiz.indiceQuestaoAtual}/${controladorQuiz.quantidadeTotalQuestoes}"),
+                        style: TextStyle(
+                            fontSize: 25,
+                            color: Color.fromARGB(255, 255, 217, 0)),
+                        "Questão"),
+                    Text(
+                        style: TextStyle(
+                            fontSize: 15,
+                            color: Color.fromARGB(255, 0, 247, 255)),
+                        "${controladorQuiz.indiceQuestaoAtual}/${controladorQuiz.quantidadeTotalQuestoes}"),
                     Divider(thickness: 5),
-                    Text(questao.enunciado),
+                    Text(
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Color.fromARGB(255, 255, 255, 255)),
+                        questao.enunciado),
                     Divider(thickness: 5),
                     SizedBox(height: 10),
                     ...controladorQuiz.questaoAtual.alternativas.map(

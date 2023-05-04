@@ -27,17 +27,41 @@ class BotaoAlternativa extends StatelessWidget {
           width: 300,
           height: 50,
           child: ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.grey[100],
-              foregroundColor: Colors.black,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(50),
-                side: BorderSide(
-                  color: selecionada ? Colors.amber : Colors.white,
-                  width: 3.0,
-                ),
-              ),
-            ),
+            style: selecionada && respondeu
+                ? acertou
+                    ? ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 0, 138, 11),
+                        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                          side: BorderSide(
+                            color: selecionada ? Colors.amber : Colors.white,
+                            width: 3.0,
+                          ),
+                        ),
+                      )
+                    : ElevatedButton.styleFrom(
+                        backgroundColor: Color.fromARGB(255, 151, 0, 0),
+                        foregroundColor: Color.fromARGB(255, 255, 255, 255),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(50),
+                          side: BorderSide(
+                            color: selecionada ? Colors.amber : Colors.white,
+                            width: 3.0,
+                          ),
+                        ),
+                      )
+                : ElevatedButton.styleFrom(
+                    backgroundColor: Colors.grey[100],
+                    foregroundColor: Colors.black,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(50),
+                      side: BorderSide(
+                        color: selecionada ? Colors.amber : Colors.white,
+                        width: 3.0,
+                      ),
+                    ),
+                  ),
             onPressed: () {
               acao(alternativa);
             },
@@ -50,12 +74,12 @@ class BotaoAlternativa extends StatelessWidget {
                     ? Expanded(
                         child: acertou
                             ? Icon(
-                                Icons.thumb_up,
-                                color: Colors.green,
+                                Icons.check,
+                                color: Colors.white,
                               )
                             : Icon(
-                                Icons.thumb_down,
-                                color: Colors.red,
+                                Icons.close,
+                                color: Colors.white,
                               ),
                       )
                     : Spacer(),
